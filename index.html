@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //获取元素的API
+        window.idxxx//或者直接idxxx(id名不能和全局属性冲突)
+        document.getElementById('idxxx')
+        document.getElementsByTagName('div')[0]//找到所有有标签为div的元素，后面是数组下标
+        document.getElementsByClassName('red')[0]//找到类名为red的元素
+        //以上三个只有需要兼容IE时才用
+        document.QuerySelector('#idxxx')
+        document.QuerySelectorAll('red')[0]
+        //工作中基本使用以上两种
+        //做demo直接用idxxx
+        document.documentElement//获取html元素
+        document.head//获取head元素
+        document.body//获取body元素
+        window//获取窗口
+        document.all//获取所有元素
+
+        //创建一个标签节点
+        let div1 = document.createElement('div')//创建div
+        document.createElement('style')//创建style
+        document.createElement('script')//创建script
+        document.createElement('li')//创建li
+
+        //创建一个文本节点
+        text1 = document.createTextNode('你好')
+
+        //在标签里插入文本
+        div1.appendChild(text1)
+        div1.innerText('你好')
+        div1.textContent = '你好'
+        document.body.appendChild(div1)
+
+        let div = document.createElement('div')
+        test1.appendChild(div)
+        test2.appendChild(div)
+        let div2 = div.cloneNode(true)//复制操作，true为深拷贝
+        test1.appendChild(div2)
+
+        parentNode.removeChild(chileNode)//旧方法
+        childNode.remove()//新方法,兼容性有问题
+        div2.remove()
+        div2 = null
+
+        //改class
+        div.className = 'red blue'//全覆盖
+        div.classList.add('red')
+        //改style
+        div.style = 'width:100px;color:blue'
+        //改style的局部
+        div.class.width = '200px'
+        div.class.backgroundColor = 'white'
+        //改data-*属性
+        div.dataset.x = 'frank'
+
+        div.classList / a.href
+        div.getAttribute('class') / a.getAttribute('href')
+
+        div.onclick//默认为null
+        fn.call(div, event)
+        //event则包含了点击事件的所有信息，如坐标
+
+        //改文本内容
+        div.innerText = 'xxx'
+        div.textContent = ''//二者几乎没有区别
+        //改HTML内容
+        div.innerHTML = '<strong>重要内容</strong>'
+        //改标签
+        div.innerHTML = ''//先清空
+        div.appendChild(div2)//再加内容
+        //查父亲
+        node.parentNode
+        node.parentElement
+        //查爷爷
+        node.parentNode.parentNode
+        //查子代
+        node.childNodes
+        node.children
+        //查兄弟姐妹
+        node.parentNode.childNodes//需要排除自己
+        node.parentNode.children//需要排除自己
+        //查大儿子
+        node.firstChild
+        //查小儿子
+        node.lastChild
+        //查看上一个兄弟元素
+        node.previousSibling
+        //查看下一个兄弟元素
+        node.nextSibling
+
+        //遍历一个div所有元素
+        travel = (node, fn) => {
+            fn(node)
+            if (node.children) {
+                for (let i = 0; i < node.children.length; i++) {
+                    travel(node.children[i], fn)
+                }
+            }
+        }
+        travel(div1, (node) => console.log(node))
+    </script>
+</body>
+
+</html>
